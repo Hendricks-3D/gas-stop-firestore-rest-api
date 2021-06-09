@@ -1,16 +1,7 @@
 import {Response} from 'express';
 import {db} from './config/firebase';
+import {User,Request} from './models/user';
 
-type User = {
-    name:string,
-    password:string,
-    carType:string
-}
-
-type Request = {
-    body:User,
-    params: {userId: string}
-}
 /**
  * 
  * @param req 
@@ -78,7 +69,7 @@ const getAllUsers = async (req: Request,res:Response)=>{
  * and update it then return the new data.
  */
 const updateUser = async (req:Request, res:Response)=>{
-    const{body: {name,password,carType},params:{userId}} = req;
+    const{body: {name,password,carType},params:{userId}} = req;//Creating and Object of type user and assign the request to it
     try{
         const user = db.collection('users').doc(userId);//get the current user dat from the firebase collection
         const currentUser =  (await user.get()).data() || {};//assign just the data to the currentUser Object
