@@ -1,5 +1,5 @@
 import {Response} from 'express';
-import {db} from './config/firebase';
+import {db,auth} from './config/firebase';
 import {User,Request} from './models/user';
 
 /**
@@ -119,5 +119,14 @@ const deleteUser = async (req:Request,res:Response)=>{
             });
     
         }
+}
+
+
+const authenticateUser = async(req:Request,res:Response)=>{
+        
+}
+
+const signOutUser = async (req:Request,res:Response)=>{
+
 }
 export {addUser,getAllUsers,updateUser,deleteUser}
