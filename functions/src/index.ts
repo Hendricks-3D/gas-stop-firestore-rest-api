@@ -4,10 +4,6 @@ import  {addUser, deleteUser, getAllUsers, updateUser } from './userController';
 
 const app = express();
 
-app.get('/',(req,res)=>{
-    res.status(200).send('Welcome to firebase');
-});
-
 //Routes
 app.post('/addUser',addUser);
 
