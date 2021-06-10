@@ -8,6 +8,7 @@ How to Start project
 3. run: npm run deploy
 
 use full websites for front-end auth
+
 https://firebase.google.com/docs/auth/web/password-auth
 https://firebase.google.com/docs/auth/admin/verify-id-tokens#web
 
