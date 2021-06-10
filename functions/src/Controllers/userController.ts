@@ -41,7 +41,7 @@ const addUser = async (req: Request,res:Response)=>{
         res.status(500).send({
             status:'Failed',
             message:err.message
-        })
+        });
     }
 }//End of addUser method
 
