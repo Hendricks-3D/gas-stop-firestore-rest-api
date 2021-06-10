@@ -31,7 +31,7 @@ app.get('/getLowestPremiumPrice',getLowestPremiumPrice);
 
 app.get('/getLowestMidGradePrice',getLowestMidGradePrice);
 
-app.get('/getGasStationByAddress',getGasStationByAddress);
+app.get('/getGasStationByAddress/:address',getGasStationByAddress);
 
 
 exports.app = functions.https.onRequest(app);
