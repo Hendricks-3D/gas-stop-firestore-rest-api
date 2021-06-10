@@ -1,7 +1,8 @@
 class User  {
-    name:any;
-    password:any;
-    carType:any
+    name!:string;
+    password!:string;
+    email!:string;
+    carType!:string
 }
 
 
