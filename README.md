@@ -15,5 +15,4 @@ https://firebase.google.com/docs/auth/admin/verify-id-tokens#web
 
 
 firebase flutter auth service docs:
-
 https://firebase.flutter.dev/docs/auth/overview/
