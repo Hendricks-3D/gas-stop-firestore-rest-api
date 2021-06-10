@@ -2,7 +2,7 @@ import * as functions from "firebase-functions";
 import * as express from 'express';
 import  {addUser, deleteUser, getAllUsers, getCurrentUser, updateUser } from './Controllers/userController';
 import {validateFirebaseIdToken} from './Authentication/authMiddleware';
-import { addGasStation, getAllGasStations, getLowestMidGradePrice, getLowestPremiumPrice, getLowestRegularPrice } from "./Controllers/gasStationController";
+import { addGasStation, getAllGasStations, getGasStationByAddress, getLowestMidGradePrice, getLowestPremiumPrice, getLowestRegularPrice } from "./Controllers/gasStationController";
 
 const app = express();
 //This will apply the middleware to all request
@@ -30,5 +30,8 @@ app.get('/getLowestRegularPrice',getLowestRegularPrice);
 app.get('/getLowestPremiumPrice',getLowestPremiumPrice);
 
 app.get('/getLowestMidGradePrice',getLowestMidGradePrice);
+
+app.get('/getGasStationByAddress',getGasStationByAddress);
+
 
 exports.app = functions.https.onRequest(app);

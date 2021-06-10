@@ -61,10 +61,24 @@ const getAllGasStations = async(req:Request,res:Response)=>{
         return res.status(500).send({
             status:"success",
             message:err.message
-        })
+        });
     }
 }//End of get all stations method
 
+const getGasStationByAddress = async(req:Request,res:Response)=>{
+    try{
+        const allGasStations:GasStation[]=[];
+        const querySnapshot = await db.collection('gasStations').where('address','==',req.params.address).get();
+        querySnapshot.forEach((doc:any)=>allGasStations.push(doc.data()));
+
+        return res.status(200).json(allGasStations);//return list of 
+    }catch(err){
+        return res.status(500).send({
+            status:"success",
+            message:err.message
+        })
+    }
+}
 /**
  * 
  * @param req 
@@ -160,4 +174,4 @@ const getLowestMidGradePrice= async(req:Request,res:Response)=>{
 
 }//End of getLowestMidGradePrice
 
-export {addGasStation,getAllGasStations, getLowestRegularPrice,getLowestMidGradePrice,getLowestPremiumPrice}
+export {addGasStation,getAllGasStations, getLowestRegularPrice,getLowestMidGradePrice,getLowestPremiumPrice,getGasStationByAddress}

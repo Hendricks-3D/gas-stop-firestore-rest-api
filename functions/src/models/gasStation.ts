@@ -44,6 +44,6 @@ class GasStation  {
 
 type Request = {
     body:GasStation,
-    params: {gasStationId: string}
+    params: {gasStationId: string,address?:string}
 }
 export{GasStation,Request}
