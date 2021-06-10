@@ -32,14 +32,14 @@ const addUser = async (req: Request,res:Response)=>{
                 });
         }else{
             res.status(500).send({
-                status:'Failed',
+                status:'failed',
                 message:"Please enter all fields"
             })
         }
  
     }catch(err){
         res.status(500).send({
-            status:'Failed',
+            status:'failed',
             message:err.message
         });
     }
@@ -64,7 +64,7 @@ const getAllUsers = async (req: Request,res:Response)=>{
         
     }catch(err){
          return res.status(500).send({
-            status:'Failed',
+            status:'failed',
             message:err.message
         });
         
@@ -100,13 +100,45 @@ const updateUser = async (req:Request, res:Response)=>{
         })
     }catch(err){
         return res.status(500).send({
-            status:'Failed',
+            status:'failed',
             message:err.message
         });
 
     }
 }//End of updateUser method
 
+/**
+ * 
+ * @param req 
+ * @param res 
+ * @returns 
+ * @desc Method that will get current user data
+ */
+const getCurrentUser = async(req:Request, res:Response) =>{
+      try{
+          const user = db.collection('users').doc(req.params.userId);
+          const currentUser = (await user.get()).data() ||{};
+
+          if(currentUser=={}){
+            return res.status(500).send({
+                status:'failed',
+                message:'invalid user id'
+            })
+          }else{
+               return res.status(200).send({
+              status:'success',
+              message:'retrieved successfully!',
+              data:currentUser
+          });
+          }
+         
+      }catch(err){
+          return res.status(500).send({
+              status:'failed',
+              message:err.message
+          })
+      }
+}
 /**
  * 
  * @param req 
@@ -126,7 +158,7 @@ const deleteUser = async (req:Request,res:Response)=>{
             })
         }catch(err){
             return res.status(500).send({
-                status:'Failed',
+                status:'failed',
                 message:err.message
             });
     
@@ -141,4 +173,4 @@ const authenticateUser = async(req:Request,res:Response)=>{
 const signOutUser = async (req:Request,res:Response)=>{
 
 }*/
-export {addUser,getAllUsers,updateUser,deleteUser}
+export {addUser,getAllUsers,updateUser,deleteUser,getCurrentUser}
