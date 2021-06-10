@@ -11,16 +11,33 @@ class GasStation  {
     password!:string;
     email!: string;
     telephone!:string;
-    regular!: boolean;
-    premium!: boolean;
-    midGrade!: boolean;
+    regular!: number;
+    premium!: number;
+    midGrade!: number;
     openTime!:string;
     closeTime!:string;
-    Address!:string;
+    address!:string;
     latitude!:string;
     longitude!:string;
     ratings!:string;
     reviewsAmount!:number;
+
+    GasStation(){
+        this.name ='';
+        this.password='';;
+        this.email='';
+        this.telephone='';
+        this.regular=0.0;
+        this.premium= 0.0;
+        this.midGrade=0.0;
+        this.openTime='';
+        this.closeTime='';
+        this.address='';
+        this.latitude='';
+        this.longitude='';
+       this.ratings='';
+        this.reviewsAmount=0;
+    }
 
 }
 
