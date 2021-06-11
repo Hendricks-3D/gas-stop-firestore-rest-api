@@ -13,7 +13,8 @@ class GasStation  {
     telephone!:string;
     regular!: number;
     premium!: number;
-    midGrade!: number;
+    diesel!: number;
+    ULSD!: number;
     openTime!:string;
     closeTime!:string;
     address!:string;
@@ -29,7 +30,8 @@ class GasStation  {
         this.telephone='';
         this.regular=0.0;
         this.premium= 0.0;
-        this.midGrade=0.0;
+        this.diesel=0.0;
+        this.ULSD=0.0;
         this.openTime='';
         this.closeTime='';
         this.address='';

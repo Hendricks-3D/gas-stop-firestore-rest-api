@@ -5,7 +5,7 @@ import {GasStation,Request} from '../models/gasStation';
 const addGasStation = async(req:Request,res:Response)=>{
     //assign the req from the user to the GasStation Object;
     const {name,password,email,telephone,regular,premium,
-        midGrade,openTime,closeTime, address,latitude,
+        diesel,ULSD,openTime,closeTime, address,latitude,
         longitude,ratings, reviewsAmount}= req.body;
 
     try{ 
@@ -21,7 +21,8 @@ const addGasStation = async(req:Request,res:Response)=>{
                 telephone,
                 regular,
                 premium,
-                midGrade,
+                diesel,
+                ULSD,
                 openTime,
                 closeTime,
                 address,
@@ -68,7 +69,8 @@ const getAllGasStations = async(req:Request,res:Response)=>{
 const getGasStationByAddress = async(req:Request,res:Response)=>{
     try{
         const allGasStations:GasStation[]=[];
-        const querySnapshot = await db.collection('gasStations').where('address','==',req.params.address).get();
+        const querySnapshot = await db.collection('gasStations')
+        .where('address','==',req.params.address).get();
         querySnapshot.forEach((doc:any)=>allGasStations.push(doc.data()));
 
         return res.status(200).json(allGasStations);//return list of 
@@ -149,7 +151,7 @@ const getLowestPremiumPrice= async(req:Request,res:Response)=>{
  * @param res 
  * @returns 
  */
-const getLowestMidGradePrice= async(req:Request,res:Response)=>{
+const getLowestDieselPrice= async(req:Request,res:Response)=>{
     try{
         const allGasStations:GasStation[]=[];
         var lowestGasStation = new GasStation();
@@ -160,7 +162,7 @@ const getLowestMidGradePrice= async(req:Request,res:Response)=>{
         //search through gas stations list for the lowest Regular Price
         for(var index = 0;index<allGasStations.length;index++)
         {
-            if(lowestGasStation.midGrade>allGasStations[index].midGrade){
+            if(lowestGasStation.diesel>allGasStations[index].diesel){
                 lowestGasStation= allGasStations[index];
             }
         }
@@ -172,6 +174,31 @@ const getLowestMidGradePrice= async(req:Request,res:Response)=>{
         });
     }
 
-}//End of getLowestMidGradePrice
+}//End of getLowestDieselPrice
 
-export {addGasStation,getAllGasStations, getLowestRegularPrice,getLowestMidGradePrice,getLowestPremiumPrice,getGasStationByAddress}
+const getLowestULSDPrice= async(req:Request,res:Response)=>{
+    try{
+        const allGasStations:GasStation[]=[];
+        var lowestGasStation = new GasStation();
+        const querySnapshot = await db.collection('gasStations').get();
+        querySnapshot.forEach((doc:any)=>{allGasStations.push(doc.data())});//get all the gas stations
+
+        lowestGasStation =allGasStations[0];
+        //search through gas stations list for the lowest Regular Price
+        for(var index = 0;index<allGasStations.length;index++)
+        {
+            if(lowestGasStation.ULSD>allGasStations[index].ULSD){
+                lowestGasStation= allGasStations[index];
+            }
+        }
+        return res.status(200).json(lowestGasStation);
+    }catch(err){
+        return res.status(500).send({
+            status:"failed",
+            message:err.message
+        });
+    }
+
+}//End of getLowestDieselPrice
+
+export {addGasStation,getAllGasStations, getLowestRegularPrice,getLowestDieselPrice,getLowestPremiumPrice,getGasStationByAddress,getLowestULSDPrice}
