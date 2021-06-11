@@ -6,7 +6,7 @@ const addGasStation = async(req:Request,res:Response)=>{
     //assign the req from the user to the GasStation Object;
     const {name,password,email,telephone,regular,premium,
         diesel,ULSD,openTime,closeTime, address,latitude,
-        longitude,ratings, reviewsAmount}= req.body;
+        longitude,ratings, reviewsAmount,airPump}= req.body;
 
     try{ 
             //get and create the gasStation collection if there is none
@@ -30,6 +30,7 @@ const addGasStation = async(req:Request,res:Response)=>{
                 longitude,
                 ratings,
                 reviewsAmount,
+                airPump
             }
             station.set(gasStationObject);//Send object to the database
             res.status(200).send({

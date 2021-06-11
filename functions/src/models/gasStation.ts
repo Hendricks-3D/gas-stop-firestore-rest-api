@@ -22,6 +22,7 @@ class GasStation  {
     longitude!:string;
     ratings!:string;
     reviewsAmount!:number;
+    airPump!:boolean;
 
     GasStation(){
         this.name ='';
@@ -37,8 +38,9 @@ class GasStation  {
         this.address='';
         this.latitude='';
         this.longitude='';
-       this.ratings='';
+        this.ratings='';
         this.reviewsAmount=0;
+        this.airPump = false;
     }
 
 }
