@@ -13,7 +13,7 @@ app.use(validateFirebaseIdToken);
 
 
 //User Routes Routes
-app.post('/addUser',addUser);
+app.post('/addUser/:userId',addUser);
 
 app.get('/allUsers',getAllUsers);
 
